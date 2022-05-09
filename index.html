@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script>
+			jQuery(document).ready(function($) {
+				$("form").submit(function() {
+					alert(`Thank you ${$("#firstName").val()} ${$("#lastName").val()}, ${$("#occupation").val()}, for your generous donation!`);
+				});
+				setInterval(function() {
+					var orig = Number($("#money").text().substring(1).replace(/[^0-9-]+/g,""))/100;
+					console.log(orig);
+					var toSet = orig + (Math.floor(Math.random() * 10000) / 100);
+					$("#money").text("$"+Number((toSet).toFixed(2)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+				}, 3000);
+			});
+		</script>
+		<style>
+			body {
+				text-align: center;
+			}
+			input {
+				margin-bottom: 5px;
+				margin-top: 5px;
+				padding-bottom: 5px;
+				padding-top: 5px;
+			}
+			label {
+				font-weight: bold;
+				font-size: 30px;
+				font-family: "Comic Sans MS";
+			}
+			#counter {
+				font-weight: bold;
+				font-size: 40px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td id="counter" colspan="3">
+					<span id="money">$9,398,103,293.01</span> SAVED FOR THE HUMANITARIAN CRISIS THANKS TO YOUR EFFORTS
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img src="78825436-happy-businessman-.webp"/>
+				</td>
+				<td style="text-align: center;">
+					<img src="logo.png"/>
+					<form>
+						<label for="firstName">First Name</label>
+						<input required="required" type="text" id="firstName"/><br>
+						<label for="firstName">Last Name</label>
+						<input required="required" type="text" id="lastName"/><br>
+						<label for="occupation">Occupation</label>
+						<input required="required" type="text" id="occupation"/><br>
+						<label for="birth">Date of Birth</label>
+						<input required="required" type="date" id="birth"/><br>
+						<input type="submit" value="Enter into our Charity Raffle">
+					</form>
+				</td>
+				<td>
+					<img src="78825436-happy-businessman-.webp" style="transform: scaleX(-1);">
+				</td>
+			</tr>
+		</table>
+		
+	</body>
+</html>

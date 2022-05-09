@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<marquee>Like, A Totally Radical Form Bro</marquee>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script>
+			jQuery(document).ready(function($) {
+				var inputMap = new Map();
+			
+				setInterval(function() {
+					$("body").css("background-color", `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`);
+				}, 500);
+				$("input").click(function() {
+					var degrees = inputMap.get($(this).attr('id'));
+					if(degrees == undefined) {
+						degrees = 0;
+					}
+					degrees += 10;
+					inputMap.set($(this).attr('id'), degrees);
+					$(this).css({'transform' : 'rotate('+ degrees +'deg)'});
+				});
+				
+				$("input").keypress(function() {
+					var degrees = inputMap.get($(this).attr('id'));
+					if(degrees == undefined) {
+						degrees = 0;
+					}
+					degrees += 10;
+					inputMap.set($(this).attr('id'), degrees);
+					$(this).css({'transform' : 'rotate('+ degrees +'deg)'});
+				});
+				
+				$("form").submit(function() {
+					alert(`Thank you ${$("#firstName").val()} ${$("#lastName").val()}, Professor of ${$("#occupation").val()}, for your generous donation!`);
+				})
+			});
+		</script>
+		<style>
+			body {
+				text-align: center;
+			}
+			input {
+				margin-bottom: 5px;
+				margin-top: 5px;
+				padding-bottom: 5px;
+				padding-top: 5px;
+			}
+			label {
+				font-weight: bold;
+				font-size: 30px;
+				font-family: "Comic Sans MS";
+			}
+		</style>
+	</head>
+	<body>
+		<form>
+			<label for="firstName">First Name:</label>
+			<input required="required" type="text" id="firstName"/><br>
+			<label for="firstName">Last Name:</label>
+			<input required="required" type="text" id="lastName"/><br>
+			<label for="occupation">Occupation:</label>
+			<input required="required" type="text" id="occupation"/><br>
+			<label for="birth">Date of Birth:</label>
+			<input required="required" type="date" id="birth"/><br>
+			<input type="submit" value="Send your details and $300 to my Paypal">
+		</form>
+	</body>
+</html>
