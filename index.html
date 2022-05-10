@@ -3,14 +3,15 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 		<script>
 			jQuery(document).ready(function($) {
-				$("form").submit(function() {
-					alert(`Thank you ${$("#firstName").val()} ${$("#lastName").val()}, ${$("#occupation").val()}, for your generous donation!`);
+				$("form").submit(function(e) {
+					$("#results").text(`Thank you ${$("#firstName").val()} ${$("#lastName").val()}, ${$("#occupation").val()}, born ${$("#birth").val()} for your generous donation!`);
+					e.preventDefault();
 				});
 				setInterval(function() {
 					var orig = Number($("#money").text().substring(1).replace(/[^0-9-]+/g,""))/100;
 					console.log(orig);
 					var toSet = orig + (Math.floor(Math.random() * 10000) / 100);
-					$("#money").text("$"+Number((toSet).toFixed(2)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+					$("#money").val("$"+Number((toSet).toFixed(2)).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}));
 				}, 3000);
 			});
 		</script>
@@ -49,6 +50,7 @@
 				</td>
 				<td style="text-align: center;">
 					<img src="logo.png"/>
+					<p id="results">Welcome!</p>
 					<form>
 						<label for="firstName">First Name</label>
 						<input required="required" type="text" id="firstName"/><br>
